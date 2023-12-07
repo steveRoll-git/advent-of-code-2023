@@ -13,25 +13,25 @@ local function handType(hand)
   end
   local counts = {}
   for c, n in pairs(lookup) do
-    table.insert(counts, {c = c, n = n})
+    table.insert(counts, n)
   end
-  table.sort(counts, function(a, b) return a.n > b.n end)
-  if counts[1].n == 5 then
+  table.sort(counts, function(a, b) return a > b end)
+  if counts[1] == 5 then
     -- five of a kind
     return 7
-  elseif counts[1].n == 4 then
+  elseif counts[1] == 4 then
     -- four of a kind
     return 6
-  elseif counts[1].n == 3 and counts[2].n == 2 then
+  elseif counts[1] == 3 and counts[2] == 2 then
     -- full house
     return 5
-  elseif counts[1].n == 3 and counts[2].n == 1 then
+  elseif counts[1] == 3 and counts[2] == 1 then
     -- three of a kind
     return 4
-  elseif counts[1].n == 2 and counts[2].n == 2 then
+  elseif counts[1] == 2 and counts[2] == 2 then
     -- two pair
     return 3
-  elseif counts[1].n == 2 and counts[2].n == 1 then
+  elseif counts[1] == 2 and counts[2] == 1 then
     -- one pair
     return 2
   else
